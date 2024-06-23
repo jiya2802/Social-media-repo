@@ -18,9 +18,9 @@ export class AddFriendComponent implements OnInit {
     this.getFriendProfiles();
     console.log(this.friends)
   }
-  showUser(id: number) {
-    this.router.navigate(['/view-profile', id]);
-  }
+  // showUser(id: number) {
+  //   this.router.navigate(['/view-profile', id]);
+  // }
   getFriendProfiles() {
     this.socialMediaService.fetchUserDetails(+this.cookieService.get('user_id')).subscribe((data) => {
       this.friends = data;

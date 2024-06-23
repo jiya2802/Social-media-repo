@@ -22,8 +22,8 @@ export class UserService {
     return this.http.post(APP_CONSTANTS.BACKEND_URL + 'login', body)
   }
 
-  getUser(user_id: number, current_user_id: number): Observable<User> {
-    return this.http.get<User>(`${this.API_URL}getUser/${user_id}?current_user_id=${current_user_id}`).pipe(
+  getUser(user_id: number): Observable<User> {
+    return this.http.get<User>(`${this.API_URL}getUser/${user_id}`).pipe(
       map(user => {
         user.posts = JSON.parse(user.posts as unknown as string);
         return user;
@@ -64,6 +64,12 @@ export class UserService {
 
   changePassword(body: { user_id: number, current_password: string, new_password: string }): Observable<any> {
     return this.http.post(`${APP_CONSTANTS.BACKEND_URL}changePassword`, body);
+  }
+  uploadFile(file : any) : Observable<any>{
+    const formData = new FormData();
+    formData.append("file",file);
+    console.log(formData);
+    return this.http.post("http://localhost:8080/api/uploadFile",formData)
   }
   
 }

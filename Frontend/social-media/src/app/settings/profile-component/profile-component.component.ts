@@ -16,7 +16,7 @@ import { User } from 'src/app/shared/interfaces/user.interface';
 export class ProfileComponentComponent implements OnInit{
   API_URL = APP_CONSTANTS
   changePasswordForm!: FormGroup;
-  currentUserId: number=parseInt(this.cookieService.get("user_id"));
+  // currentUserId: number=parseInt(this.cookieService.get("user_id"));
   user_id!:number
   profilePictureUrl: string | ArrayBuffer | null = null;
   UserDetails !: User
@@ -30,7 +30,7 @@ export class ProfileComponentComponent implements OnInit{
       confirm_password: new FormControl()
     });
     this.user_id = parseInt(this.cookieService.get('user_id'));
-    this.getUser(this.user_id,this.currentUserId)
+    this.getUser(this.user_id)
   }
 
   passwordMatchValidator(control: FormControl): { [s: string]: boolean } | null {
@@ -100,8 +100,8 @@ export class ProfileComponentComponent implements OnInit{
     }
   }
 
-  getUser(user_id: number, currentUserId: number){
-    this.userService.getUser(user_id,this.currentUserId).subscribe({
+  getUser(user_id: number){
+    this.userService.getUser(user_id).subscribe({
       next: (data : User) => {
         this.UserDetails = data
         if(this.UserDetails.image_url === null){

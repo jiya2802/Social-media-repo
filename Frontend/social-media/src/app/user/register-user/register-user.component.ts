@@ -38,11 +38,14 @@ export class RegisterUserComponent {
     }
     console.log(this.registerForm.value.password)
     if (this.registerForm.value.password === this.registerForm.value.confirmPassword) {
-      this.userService.register(this.registerForm.value).subscribe((value) => {
-        console.log("Registered!!!")
-        this.router.navigate([''])
+      this.userService.uploadFile(this.imageUrl).subscribe((data)=>{
+        this.userService.register(this.registerForm.value).subscribe((data)=>{
+          console.log(data)
+          this.router.navigate([''])
+        })
       })
     }
+    
   }
   read(event: any) {
     this.imageUrl = event.target.files[0];

@@ -31,8 +31,8 @@ public class UserRepository {
         return jdbcTemplate.queryForMap(" EXEC  dbo.sp_generateFPToken ?",email);
     }
 
-    public Map<String,Object> fetchUserDetails(int user_id,int currentUserId){
-        return jdbcTemplate.queryForMap("EXEC [social_media].[fetchUserDetails] ?,?",user_id,currentUserId);
+    public Map<String,Object> fetchUserDetails(int user_id){
+        return jdbcTemplate.queryForMap("EXEC [social_media].[fetchUserDetails] ?",user_id);
     }
     public Map<String,Object> fetchPostDetails(int post_id,int user_id){
         return jdbcTemplate.queryForMap("EXEC social_media.[sp_fetch_a_single_post] ?,?",user_id,post_id);

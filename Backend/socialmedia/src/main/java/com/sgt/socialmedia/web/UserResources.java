@@ -37,8 +37,8 @@ public class UserResources {
     }
 
     @GetMapping("/getUser/{user_id}")
-    public Map<String, Object> fetchUserDetails(@PathVariable int user_id, @RequestParam int current_user_id) {
-        return userService.fetchUserDetails(user_id, current_user_id);
+    public Map<String, Object> fetchUserDetails(@PathVariable int user_id) {
+        return userService.fetchUserDetails(user_id);
     }
 
     @PostMapping("/getPost")

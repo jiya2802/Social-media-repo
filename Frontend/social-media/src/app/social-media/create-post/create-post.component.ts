@@ -57,12 +57,15 @@ export class CreatePostComponent {
       console.log(this.createPostForm.value);
       this.socialMediaService.uploadFile(this.imageUrl).subscribe(() => {
         this.socialMediaService.createPost(this.createPostForm.value).subscribe((response) => {
+          alert('Post created successfully');
           console.log(response);
           if (response.includes('Posted Successfully')) {
             console.log(response);
             this.createPostForm.reset(); // Reset the form after successful submission
             this.imageUrl = '';
-            this.formSubmitted = false; // Reset formSubmitted after successful submission
+            this.formSubmitted = false; 
+            
+            // Reset formSubmitted after successful submission
           }
         });
       });

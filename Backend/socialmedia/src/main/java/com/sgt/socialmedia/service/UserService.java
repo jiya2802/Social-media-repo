@@ -117,8 +117,8 @@ public class UserService {
 
 
 
-    public Map<String, Object> fetchUserDetails(int userId, int currentUserId) {
-        Map<String, Object> userDetails = userRepository.fetchUserDetails(userId, currentUserId);
+    public Map<String, Object> fetchUserDetails(int userId) {
+        Map<String, Object> userDetails = userRepository.fetchUserDetails(userId);
 
         if (userDetails == null || userDetails.isEmpty()) {
             throw new IllegalArgumentException("User not found or profile is private.");

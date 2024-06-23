@@ -13,7 +13,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class HomeComponent implements OnInit {
   API_URL = APP_CONSTANTS;
   userId!: number;
-  currentUserId!: number;
+  // currentUserId!: number;
   UserDetails!: User;
 
   constructor(
@@ -26,14 +26,14 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.userId = +params['user_id'];
-      this.currentUserId = parseInt(this.cookieService.get('user_id'));
+      // this.currentUserId = parseInt(this.cookieService.get('user_id'));
       console.log(this.userId);
-      this.getUser(this.userId, this.currentUserId);
+      this.getUser(this.userId);
     });
   }
 
-  getUser(user_id: number, current_user_id: number) {
-    this.userService.getUser(user_id, current_user_id).subscribe({
+  getUser(user_id: number) {
+    this.userService.getUser(user_id).subscribe({
       next: (data: User) => {
         this.UserDetails = data;
         if (this.UserDetails.image_url === null) {
